@@ -52,12 +52,17 @@ const adddMood = (mood) => {
 };
 
 export const fetchMoods = (id) => {
-  return function (dispatch) {
+  return function (dispatch, getState) {
     dispatch(requestMoods());
+
+    const dates = getState().dates.result;
+
+    const start_date = dates.slice(0).pop();
+    const end_date = dates.slice(-1).pop();
 
     return (async() => {
       try {
-        const response = await fetch(`http://localhost:3000/moods?team_id=${id}`);
+        const response = await fetch(`http://1ecb0b45.ngrok.io/moods?start_date=${start_date}&end_date=${end_date}&team_id=${id}`);
 
         if (response.status === 200) {
           const data = await response.json();
