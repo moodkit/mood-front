@@ -29,7 +29,7 @@ export const fetchTeams = () => {
 
     return (async() => {
       try {
-        const response = await fetch('http://localhost:3000/teams');
+        const response = await fetch('http://1ecb0b45.ngrok.io/teams');
 
         if (response.status === 200) {
           const data = await response.json();
