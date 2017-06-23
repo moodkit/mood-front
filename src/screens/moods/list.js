@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import Emoji from 'react-emoji-render'
+import Emojify from 'react-emojione'
 
 import { fetchMoods, setUser, setTimestamp, setProperty, addMood } from '../../redux/moods';
 import { setDates } from '../../redux/dates';
@@ -62,7 +62,7 @@ export default class MoodsList extends Component {
   }
 
   renderEmoji(value) {
-    return <Emoji text={value} />;
+    return <Emojify><span>{value}</span></Emojify>;
   }
 
   // TODO: Move to grid?
