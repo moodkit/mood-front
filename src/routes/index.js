@@ -9,7 +9,7 @@ import MoodsList from '../screens/moods/list';
 export default () => (
   <Route component={ App }>
     <IndexRoute component={ TeamsList } />
-    <Route component={ UsersList } path="/users/" />
+    <Route component={ TeamsList } path="/teams/" />
     <Route component={ MoodsList } path="/teams/:id/moods" />
   </Route>
 );
