@@ -1,21 +1,25 @@
 import React from 'react';
-import { IndexLink, Link } from 'react-router';
-import styles from './style.scss';
+import { IndexLink } from 'react-router';
 
 export default () => (
-  <div className={styles.navbar}>
-    <div className="wrapper">
-      <ul>
-        <li>
+  <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+    <div className="container">
+      <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <a className="navbar-brand" href="#">Navbar</a>
+
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav mr-auto">
           <IndexLink
             to="/"
-            className={styles.a}
-            activeClassName={styles.active}
+            className="nav-item"
+            activeClassName="active"
           >
-          Home
-        </IndexLink>
-        </li>
-      </ul>
+            Home
+          </IndexLink>
+        </ul>
+      </div>
     </div>
-  </div>
+  </nav>
 );
