@@ -100,7 +100,8 @@ export const addMood = (obj) => {
   return function (dispatch, getState) {
     const timestamp = getState().moods.selectedTimestamp;
     const id = getState().moods.selectedUser;
-    const mood = Object.assign({}, { timestamp, user: { id, name: 'Dave Li' } } , obj);
+    const user = getState().moods.result.find(mood => mood.user.id === id).user;
+    const mood = Object.assign({}, { timestamp, user } , obj);
 
     dispatch(adddMood(mood));
   }
