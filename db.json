@@ -1,0 +1,41 @@
+{
+  "teams": [{
+    "id": 1,
+    "name": "TEAM ALPHA",
+    "slug": "mood-board",
+    "description": "A description!"
+  },{
+    "id": 2,
+    "name": "TEAM OMEGA",
+    "slug": "mood-board-2",
+    "description": "A description 2!"
+  }],
+  "users": [{
+    "id": 1,
+    "name": "Dave Li",
+    "email": "dave.li@schibsted.com",
+    "teams": [1, 2]
+  },{
+    "id": 2,
+    "name": "Daniele Grasso",
+    "email": "daniele.grasso@schibsted.com",
+    "teams": [2]
+  }],
+  "moods": [{
+    "timestamp": 1498003200,
+    "label": ":)",
+    "value": -5,
+    "user": {
+      "id": 1,
+      "name": "Dave Li"
+    }
+  }, {
+    "timestamp": 1497830400,
+    "label": ":)",
+    "value": -5,
+    "user": {
+      "id": 2,
+      "name": "Daniele Grasso"
+    }
+  }]
+}

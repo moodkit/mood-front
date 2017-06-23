@@ -1,0 +1,16 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+.emojis__list {
+  .btn {
+    margin-right: 10px;
+  }
+}
+
+td.moods__cell--emoji {
+  &:hover {
+    background: #00ff00;
+  }
+  &.active {
+    background: #ff00ff;
+  }
+}
