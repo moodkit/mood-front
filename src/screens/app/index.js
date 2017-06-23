@@ -10,7 +10,6 @@ import Store from '../../redux/store';
 import { Provider } from 'react-redux';
 
 import Navbar from '../../components/navbar';
-import styles from './style.scss';
 
 export default class App extends Component {
   static propTypes = {
@@ -20,7 +19,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store = { Store }>
-        <div className={styles.main}>
+        <div>
           <Helmet
             link={[{
               rel: 'icon', href: '/favicon.png'
