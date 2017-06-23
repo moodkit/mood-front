@@ -8,19 +8,7 @@ import Emoji from 'react-emoji-render'
 
 import { fetchMoods, setUser, setTimestamp, setProperty, addMood } from '../../redux/moods';
 import { setDates } from '../../redux/dates';
-
-import { createSelector } from 'reselect';
-
-const getMoods = (state) => state.moods.result;
-
-const getUsers = createSelector(
-  [ getMoods ],
-  (moods) => {
-    const users = moods.map(i => i.user);
-
-    return Array.from(new Set(users.map(JSON.stringify))).map(JSON.parse);
-  }
-);
+import { fetchUsers } from '../../redux/users';
 
 const EMOJI_SET_MOODS = [
   {label: ':scream:', value: -5},
@@ -40,14 +28,15 @@ const mapStateToProps = (state) => {
   return {
     dates: state.dates.result,
     moods: state.moods.result,
-    users: getUsers(state),
+    // users: getUsers(state),
+    users: state.users.result,
     default_emojis: EMOJI_SET_MOODS,
     selectedUser: state.moods.selectedUser,
     selectedTimestamp: state.moods.selectedTimestamp,
   };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ setDates, fetchMoods, setUser, setTimestamp, setProperty, addMood }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ setDates, fetchMoods, setUser, setTimestamp, setProperty, addMood, fetchUsers }, dispatch);
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MoodsList extends Component {
@@ -62,6 +51,7 @@ export default class MoodsList extends Component {
     const { id } = this.props.router.params;
 
     this.props.setDates();
+    this.props.fetchUsers({team_id: id});
     this.props.fetchMoods(id);
   }
 

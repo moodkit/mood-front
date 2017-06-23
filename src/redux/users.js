@@ -31,7 +31,7 @@ export const fetchUsers = (params) => {
 
     return (async() => {
       try {
-        const response = await fetch(`http://localhost:3000/users?team_id=${team_id}`);
+        const response = await fetch(`http://1ecb0b45.ngrok.io/teams/${team_id}/users`);
 
         if (response.status === 200) {
           const data = await response.json();
