@@ -24,6 +24,7 @@ export default class TeamsList extends Component {
   render() {
     return (
       <div className="container">
+        <h1>Teams</h1>
         {this.props.teams.map((y, i) =>
           <div key={y.id}>
             <Link to={{ pathname: `teams/${y.id}/moods` }}>{y.name}</Link>
