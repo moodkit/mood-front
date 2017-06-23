@@ -51,13 +51,13 @@ const adddMood = (mood) => {
   };
 };
 
-export const fetchMoods = () => {
+export const fetchMoods = (id) => {
   return function (dispatch) {
     dispatch(requestMoods());
 
     return (async() => {
       try {
-        const response = await fetch(`http://localhost:3000/moods`);
+        const response = await fetch(`http://localhost:3000/moods?team_id=${id}`);
 
         if (response.status === 200) {
           const data = await response.json();

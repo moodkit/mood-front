@@ -59,8 +59,10 @@ export default class MoodsList extends Component {
   }
 
   componentDidMount() {
+    const { id } = this.props.router.params;
+
     this.props.setDates();
-    this.props.fetchMoods();
+    this.props.fetchMoods(id);
   }
 
   renderCell(user, timestamp) {
