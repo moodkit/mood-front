@@ -1,4 +1,5 @@
 import * as ActionTypes from '../ActionTypes';
+import * as Config from '../Config';
 
 const requestUsers = () => {
   return {
@@ -31,7 +32,7 @@ export const fetchUsers = (params) => {
 
     return (async() => {
       try {
-        const response = await fetch(`http://1ecb0b45.ngrok.io/teams/${team_id}/users`);
+        const response = await fetch(Config.HOST + `/teams/${team_id}/users`);
 
         if (response.status === 200) {
           const data = await response.json();

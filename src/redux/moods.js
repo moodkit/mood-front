@@ -1,4 +1,5 @@
 import * as ActionTypes from '../ActionTypes';
+import * as Config from '../Config';
 
 const requestMoods = () => {
   return {
@@ -62,7 +63,7 @@ export const fetchMoods = (id) => {
 
     return (async() => {
       try {
-        const response = await fetch(`http://1ecb0b45.ngrok.io/moods?start_date=${start_date}&end_date=${end_date}&team_id=${id}`);
+        const response = await fetch(Config.HOST + `/moods?start_date=${start_date}&end_date=${end_date}&team_id=${id}`);
 
         if (response.status === 200) {
           const data = await response.json();
