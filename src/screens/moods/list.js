@@ -5,24 +5,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Emojify from 'react-emojione'
+import { Link } from 'react-router';
 
 import { fetchMoods, setUser, setTimestamp, setProperty, addMood } from '../../redux/moods';
 import { setDates } from '../../redux/dates';
 import { fetchUsers } from '../../redux/users';
-
-const EMOJI_SET_MOODS = [
-  {label: ':scream:', value: -5},
-  {label: ':dizzy_face:', value: -4},
-  {label: ':frowning2:', value: -3},
-  {label: ':rolling_eyes:', value: -2},
-  {label: ':unamused:', value: -1},
-  {label: ':neutral_face:', value: 0},
-  {label: ':smirk:', value: 1},
-  {label: ':slight_smile:', value: 2},
-  {label: ':smiley:', value: 3},
-  {label: ':laughing:', value: 4},
-  {label: ':sunglasses:', value: 5},
-];
 
 const mapStateToProps = (state) => {
   return {
@@ -30,7 +17,6 @@ const mapStateToProps = (state) => {
     moods: state.moods.result,
     // users: getUsers(state),
     users: state.users.result,
-    default_emojis: EMOJI_SET_MOODS,
     selectedUser: state.moods.selectedUser,
     selectedTimestamp: state.moods.selectedTimestamp,
   };
@@ -95,13 +81,6 @@ export default class MoodsList extends Component {
   render() {
     return (
       <div className="container">
-
-        <div className="emojis__list">
-          {this.props.default_emojis.map((y) =>
-            <button type="button" className="btn btn-secondary" key={y.value} data-label={y.label} data-value={y.value} onClick={this.setEmoji}>{ this.renderEmoji(y.label) }</button>
-          )}
-        </div>
-
         <table className="table moods__table">
           <thead>
             <tr>
@@ -114,7 +93,7 @@ export default class MoodsList extends Component {
           <tbody>
           {this.props.users.map((user) =>
             <tr key={user.id}>
-              <td>{user.name}</td>
+              <td><Link to={{ pathname: `/users/${user.id}/moods` }}>{user.name}</Link></td>
               {this.props.dates.map((timestamp) =>
                 <td className="moods__cell--emoji" key={timestamp} data-user-id={user.id} data-timestamp={timestamp} onClick={this.handleClick}>{ this.renderCell(user, timestamp) } </td>
               )}

@@ -52,18 +52,25 @@ const adddMood = (mood) => {
   };
 };
 
-export const fetchMoods = (id) => {
+export const fetchMoods = (team_id, user_id) => {
   return function (dispatch, getState) {
     dispatch(requestMoods());
 
     const dates = getState().dates.result;
 
-    const start_date = dates.slice(0).pop();
-    const end_date = dates.slice(-1).pop();
+    const start_date = dates[0];
+    const end_date = dates[dates.length - 1];
 
     return (async() => {
       try {
-        const response = await fetch(Config.HOST + `/moods?start_date=${start_date}&end_date=${end_date}&team_id=${id}`);
+        let params = "";
+        if (team_id) {
+            params += `&team_id=${team_id}`;
+        }
+        if (user_id) {
+            params += `&user_id=${user_id}`;
+        }
+        const response = await fetch(Config.HOST + `/moods?start_date=${start_date}&end_date=${end_date}` + params);
 
         if (response.status === 200) {
           const data = await response.json();
